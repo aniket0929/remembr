@@ -15,7 +15,7 @@ A modern, real-time bookmark manager built with Next.js, Supabase, and Tailwind 
 
 ##  Live Demo
 
-**Deployed URL:** [https://your-app.vercel.app](https://your-app.vercel.app)
+**Deployed URL:** [https://remembr-rho.vercel.app](https://remembr-rho.vercel.app)
 
 **Test Credentials:** Sign in with any Google account
 
@@ -851,8 +851,6 @@ Instead of loading all bookmarks at once (which would slow down the app as the c
 - [Vercel](https://vercel.com/)
 
 
-**Project Link:** [https://github.com/aniket0929/remembr](https://github.com/aniket0929/remembr)
 
----
 
 Made with love using Next.js and Supabase
