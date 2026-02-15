@@ -1,3 +1,25 @@
+/**
+ * Metadata Fetcher API Route (app/api/fetch-metadata/route.ts)
+ *
+ * Server-side API endpoint that fetches a web page and extracts metadata for bookmark previews.
+ *
+ * Extraction pipeline (with fallbacks):
+ * - Title:       og:title → <title> tag → hostname
+ * - Description: og:description → meta[name="description"] → null
+ * - Image:       og:image → twitter:image → null
+ * - Favicon:     <link rel="icon"> → <link rel="apple-touch-icon"> → Google Favicons API
+ *
+ * Features:
+ * - 5-second timeout to prevent hanging on slow sites
+ * - Handles relative URLs (converts to absolute using the page origin)
+ * - Handles reversed attribute order in meta tags (content before property)
+ * - Decodes HTML entities in extracted text
+ * - Truncates descriptions to 200 characters
+ * - Spoofs a Chrome User-Agent to avoid bot-blocking
+ *
+ * Called by: AddBookmarkForm when a user pastes a URL
+ */
+
 import { NextResponse } from 'next/server'
 
 // Helper to extract meta tag content by property or name

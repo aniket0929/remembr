@@ -1,18 +1,30 @@
+/**
+ * Landing Page (app/page.tsx)
+ *
+ * This is the public-facing homepage of Remembr.
+ * - If the user is already logged in, they are redirected to the dashboard.
+ * - If not, they see the hero section, feature highlights, "How it works" steps, and footer.
+ *
+ * This is a Server Component — it runs on the server and can access Supabase directly.
+ */
+
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 export default async function HomePage() {
+  // Create a server-side Supabase client to check auth status
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
+  // If already authenticated, skip the landing page entirely
   if (user) {
     redirect('/dashboard')
   }
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
-      {/* Nav */}
+      {/* ──────────────── Navigation Bar ──────────────── */}
       <nav className="flex items-center justify-between px-8 py-6 border-b border-[#1A1A1A]">
         <span className="font-display text-[#C5AE79] text-2xl tracking-wider">REMEMBR</span>
         <Link
@@ -23,7 +35,8 @@ export default async function HomePage() {
         </Link>
       </nav>
 
-      {/* Hero */}
+      {/* ──────────────── Hero Section ──────────────── */}
+      {/* Full-viewport centered headline with staggered fade-in animations */}
       <main className="flex-1 flex flex-col items-center justify-center px-8 text-center">
         <div className="animate-in max-w-3xl">
           <h1 className="font-display text-[#C5AE79] text-7xl md:text-9xl lg:text-[10rem] leading-[0.85] mb-8">
@@ -35,6 +48,7 @@ export default async function HomePage() {
           A bookmark manager with auto-fetch, real-time sync, and infinite scroll. Nothing more.
         </p>
 
+        {/* CTA button — links to login/Google OAuth */}
         <Link href="/login" className="animate-in delay-2">
           <button className="text-sm font-medium tracking-wide uppercase text-[#0A0A0A] bg-[#C5AE79] px-8 py-3.5 hover:bg-[#B89D68] transition-colors duration-200 active:scale-[0.98]">
             Get Started
@@ -46,7 +60,8 @@ export default async function HomePage() {
         </p>
       </main>
 
-      {/* Features */}
+      {/* ──────────────── Feature Grid ──────────────── */}
+      {/* 4-column grid on desktop, 2-column on mobile — each cell has a number, title, description */}
       <div className="border-t border-[#1A1A1A] grid grid-cols-2 md:grid-cols-4">
         {[
           ['01', 'Auto-fetch', 'Paste a URL, get the title and preview.'],
@@ -62,7 +77,8 @@ export default async function HomePage() {
         ))}
       </div>
 
-      {/* How It Works */}
+      {/* ──────────────── How It Works Section ──────────────── */}
+      {/* Three numbered steps explaining the user flow */}
       <div className="border-t border-[#1A1A1A] px-8 py-20 md:py-28">
         <div className="max-w-3xl mx-auto">
           <span className="text-[10px] text-[#3A3A3A] uppercase tracking-widest">How it works</span>
@@ -87,6 +103,7 @@ export default async function HomePage() {
               },
             ].map(({ step, title, desc }) => (
               <div key={step} className="flex gap-8 items-start">
+                {/* Large step number on the left */}
                 <span className="font-display text-[#C5AE79] text-5xl md:text-7xl leading-none">{step}</span>
                 <div className="pt-2 md:pt-4">
                   <h3 className="font-display text-[#C5AE79] text-xl md:text-2xl mb-3">{title}</h3>
@@ -98,7 +115,8 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* ──────────────── Footer ──────────────── */}
+      {/* Large brand name + attribution */}
       <footer className="border-t border-[#1A1A1A] px-8 py-20 md:py-28 text-center">
         <h2 className="font-display text-[#C5AE79] text-6xl md:text-8xl lg:text-9xl mb-6">REMEMBR.</h2>
         <p className="text-sm text-[#5A5A5A]">

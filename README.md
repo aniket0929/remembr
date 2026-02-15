@@ -671,6 +671,19 @@ This ensures the `useEffect` that subscribes to Supabase Realtime only runs when
 
 **Learning:** When using external client instances (like Supabase, Firebase, etc.) inside `useEffect` dependency arrays, always memoize them with `useMemo` to prevent unnecessary effect re-runs. An unstable reference in the dependency array defeats the purpose of the cleanup/setup lifecycle.
 
+
+### 7. Problem 8: : Instant UI Updates
+
+**The Problem:** In production, Supabase Realtime sometimes experienced latency or wasn't enabled for the `bookmarks` table, causing new bookmarks to not appear in the list until the page was refreshed. The UI was relying solely on the `INSERT` event from the server.
+
+**The Solution:**
+- **Updated `AddBookmarkForm`:** Changed the insert query to use `.select().single()`, returning the full bookmark row (including server-generated ID and timestamp) immediately in the response.
+- **Custom Event Dispatch:** Dispatched a `bookmark-added` custom event with the new bookmark data.
+- **Optimistic UI Update:** `BookmarkList` listens for this event and prepends the new bookmark instantly.
+- **Deduplication:** Both the custom event listener AND the Realtime subscription have checks to prevent duplicate entries (using ID matching), ensuring a seamless experience regardless of network speed or Realtime status.
+
+**Skills demonstrated:** Production debugging, hybrid optimistic/realtime state management, robust error handling, event-driven architecture.
+
 ##  Deployment to Vercel
 
 ### Steps:
@@ -797,6 +810,10 @@ Instead of loading all bookmarks at once (which would slow down the app as the c
 - Pagination is hidden during search (filtering happens on all loaded bookmarks)
 
 **Skills demonstrated:** Server-side pagination with Supabase `.range()`, `IntersectionObserver` API, hybrid SSR + client architecture, progressive loading UX.
+
+---
+
+
 
 ---
 
