@@ -57,7 +57,7 @@ export default async function DashboardPage() {
           <form action="/auth/signout" method="post">
             <button
               type="submit"
-              className="text-xs text-[#3A3A3A] hover:text-[#7A7055] transition-colors duration-200"
+              className="text-xs text-[#5A5A5A] hover:text-[#C5AE79] transition-colors duration-200"
             >
               Sign Out
             </button>

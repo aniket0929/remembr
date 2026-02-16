@@ -145,7 +145,7 @@ export default function AddBookmarkForm({ userId }: AddBookmarkFormProps) {
             value={url}
             onChange={(e) => handleUrlChange(e.target.value)}
             disabled={loading}
-            className="w-full bg-[#111] border border-[#1A1A1A] text-[#C5AE79] placeholder:text-[#333] text-sm px-4 py-3 outline-none focus:border-[#333] transition-colors duration-200 disabled:opacity-40"
+            className="w-full bg-[#111] border border-[#1A1A1A] text-[#C5AE79] placeholder:text-[#5A5A5A] text-sm px-4 py-3 outline-none focus:border-[#333] transition-colors duration-200 disabled:opacity-40"
           />
           {/* Spinner shown while metadata is being fetched */}
           {fetching && (
@@ -172,7 +172,7 @@ export default function AddBookmarkForm({ userId }: AddBookmarkFormProps) {
             value={title}
             onChange={(e) => { setTitle(e.target.value); setAutoFetched(false) }}
             disabled={loading}
-            className="flex-1 bg-[#111] border border-[#1A1A1A] text-[#C5AE79] placeholder:text-[#333] text-sm px-4 py-3 outline-none focus:border-[#333] transition-colors duration-200 disabled:opacity-40"
+            className="flex-1 bg-[#111] border border-[#1A1A1A] text-[#C5AE79] placeholder:text-[#5A5A5A] text-sm px-4 py-3 outline-none focus:border-[#333] transition-colors duration-200 disabled:opacity-40"
           />
         </div>
       </div>

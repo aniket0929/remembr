@@ -253,7 +253,7 @@ export default function BookmarkList({ initialBookmarks, userId, totalCount, pag
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full max-w-xs bg-transparent border-b border-[#1A1A1A] text-[#C5AE79] placeholder:text-[#2A2A2A] text-sm py-2 outline-none focus:border-[#333] transition-colors duration-200"
+          className="w-full max-w-xs bg-transparent border-b border-[#1A1A1A] text-[#C5AE79] placeholder:text-[#5A5A5A] text-sm py-2 outline-none focus:border-[#333] transition-colors duration-200"
         />
       </div>
 
@@ -343,7 +343,7 @@ export default function BookmarkList({ initialBookmarks, userId, totalCount, pag
               {/* Delete button — only visible on card hover, scales on its own hover */}
               <button
                 onClick={() => handleDelete(bookmark.id)}
-                className="text-[10px] text-[#C5AE79] uppercase tracking-widest transition-transform duration-200 hover:scale-110 border border-[#C5AE79] px-3 py-1 opacity-0 group-hover:opacity-100"
+                className="text-[10px] text-[#C5AE79] uppercase tracking-widest transition-transform duration-200 hover:scale-110 border border-[#C5AE79] px-3 py-1 opacity-0 group-hover:opacity-100 "
               >
                 Delete
               </button>
